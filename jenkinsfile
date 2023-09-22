@@ -1,0 +1,37 @@
+pipeline {
+    agent {
+        node {
+            label 'docker_agent1'
+        }
+    }
+    stages {
+        stage('Build') {
+            steps {
+                echo "Building.."
+            }
+        }
+        stage('Testing file') {
+            steps {
+                echo "Testing if file is present."
+            }
+        }
+
+        stage('Run Script') {
+            steps {
+                sh 'chmod 700 aktion.sh'
+                sh './aktion.sh'
+            }
+        }
+
+        stage('Testing Dep') {
+            steps {
+                echo "Testing.if anything gets broken on the dependency site "
+            }
+        }
+        stage('Deliver') {
+            steps {
+                echo "Deliver...."
+            }
+        } 
+    }
+}
